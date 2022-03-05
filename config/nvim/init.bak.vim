@@ -1,0 +1,30 @@
+lua require("settings")
+lua require("autocmds")
+lua require("mappings")
+lua require("plugins/hop-nvim")
+lua require("plugins/nvim-tree")
+lua require("plugins/telescope")
+lua require("plugins/venn-nvim")
+lua require("plugins/glow-nvim")
+lua require("plugins/packer-nvim")
+lua require("plugins/comment-nvim")
+lua require("plugins/lualine-nvim")
+lua require("plugins/renamer-nvim")
+lua require("plugins/nvim-colorizer")
+lua require("plugins/headlines-nvim")
+lua require("plugins/nvim-autopairs")
+lua require("plugins/neoscroll-nvim")
+lua require("plugins/nvim-treesitter")
+lua require("plugins/bufferline-nvim")
+lua require("plugins/telescope-fzf-native")
+lua require("plugins/markdown-preview-nvim")
+lua require("plugins/indent-blankline-nvim")
+ 
+lua require("plugins/tabout-nvim") -- Last
+ 
+" require("luasnip")
+" require("plugins/null-ls")
+" require("plugins/nvim-cmp")
+" require("plugins/nvim-lspconfig")
+
+source ~/.config/nvim/lua/plugins/coc-nvim.vim

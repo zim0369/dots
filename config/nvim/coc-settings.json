@@ -1,0 +1,40 @@
+{
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "rust",
+    "fish",
+    "c",
+    "cpp",
+    "css",
+    "html",
+    "sh",
+    "python",
+    "bash",
+    "haskell",
+    "lua",
+    "javascript",
+    "json",
+    "yaml",
+    "toml"
+  ],
+  "languageserver": {
+    "haskell": {
+      "command": "haskell-language-server-wrapper",
+      "args": ["--lsp"],
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml",
+        "hie.yaml"
+      ],
+      "filetypes": ["haskell", "lhaskell"]
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"]
+    }
+  },
+  "Lua.telemetry.enable": false
+}
