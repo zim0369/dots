@@ -111,6 +111,9 @@ while true; do
     elif [[ "$action" = "p" ]]; then
         /usr/bin/bash ~/.config/picom/picom-toggle.sh
         break
+    elif [[ "$action" = "d" ]]; then
+        xset dpms force off
+        break
     elif [[ "$action" = "q" ]]; then
         break
     else

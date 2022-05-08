@@ -1,0 +1,121 @@
+ls
+pacman -Ss something
+ls
+whoami
+uname -a
+pacman -S zoxide
+pac -S zoxide
+sudo pacman -S zoxide
+l
+fg
+mkdir ~/.cache/starship
+starship init nu | save ~/.cache/starship/init.nu
+nu.config-path
+config set line_editor.edit_mode "vi"
+ls
+fg
+zoxide 
+config path
+fg
+ls
+l ~/.config/nushell/
+ls ~/.config/nushell/
+hx ~/.config/nushell/env.nu
+hx ~/.config/nushell/config.nu
+hx ~/.config/nushell/env.nu
+ls
+starship init nu | save ~/.cache/starship/init.nu
+cat ~/.cache/starship/init.nu
+hx ~/.config/nushell/config.nu
+ls
+cd ~/github/
+cd ./gelacritty/
+cd
+z
+pac -S zoxide
+sudo pacman -S zoxide
+zoxide
+fg
+chsh -s nu
+which nu
+chsh -s /usr/bin/nu
+startx
+chsh -s /usr/bin/fish
+nu
+fg
+v
+hx ~/.config/nushell/config.nu
+cd
+reb
+reboot
+ls
+z
+zoxide
+fish
+hx ~/.config/nushell/config.nu
+cd
+pwd
+v
+vim
+hx ~/.config/helix/config.toml
+hx ./.scratch.md
+pac -Ss ltex
+sudo pacman -Ss ltex-ls
+sudo pacman -Ss ltex server
+sudo pacman -Ss latex language server
+sudo pacman -S texlab
+hx ./.scratch.md
+tex-ls
+texlab
+q
+g
+fg
+hx ./.config/helix/languages.toml
+hx ./.scratch.md
+dym pirete
+dict piete
+m
+pac -Ss dictionary | rg installed
+sudo pacman -Ss dictionary | rg installed
+sudo pacman -Ss dict | rg installed
+sudo pacman -Ss word | rg installed
+whatis words
+words
+words -h
+sudo paru -Ss dict | rg installed
+config.nu
+fg
+this kaldjf lkjdff jdf:
+keybindings list
+th sfdf
+alsdfj ljdfl jdkfj 
+date
+time
+fish date
+fish
+hx
+l
+cd ./github/reedline/
+l
+v
+hx ~/.config/fish/config.fish
+hx ~/.config/alacritty/alacritty.yml
+fg
+vim
+fg
+vim
+keybindings list
+ls
+keybindings list
+fg
+this
+ls
+la
+ls -la
+ls -lh
+ls -a
+ls -la
+this
+v ~/.config/nushell/config.nu
+lvim ~/.config/nushell/config.nu
+l

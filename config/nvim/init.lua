@@ -13,11 +13,11 @@ require("plugins/nvim-colorizer")
 require("plugins/headlines-nvim")
 require("plugins/nvim-autopairs")
 require("plugins/neoscroll-nvim")
- 
+
 require("plugins/mini-nvim")
 require("plugins/bufferline-nvim")
 -- require("plugins/alpha-nvim")
- 
+
 require("plugins/telescope-fzf-native")
 require("plugins/markdown-preview-nvim")
 require("plugins/indent-blankline-nvim")

@@ -18,6 +18,7 @@ import Data.Monoid
 import Graphics.X11.ExtraTypes.XF86
 import System.Exit
 import XMonad
+import XMonad.Actions.CycleWS
 import XMonad.Actions.DwmPromote
 import XMonad.Actions.SwapPromote
 import XMonad.Hooks.DynamicLog
@@ -35,7 +36,7 @@ import XMonad.Util.Stack
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "alacritty"
+myTerminal = "kitty"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -132,14 +133,19 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl set 3%-"),
       ((modm, xK_w), spawn "brave"),
       ((modm, xK_r), rofi_launch),
+      ((modm .|. shiftMask, xK_r), refresh),
       ((modm, xK_BackSpace), kill),
       ((modm, xK_space), sendMessage NextLayout),
       ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf),
-      ((modm, xK_n), refresh),
-      ((modm, xK_Tab), windows W.focusDown),
+      ((modm, xK_n), spawn "lvim-gui"),
       ((modm, xK_m), windows W.focusMaster),
       -- ((modm, xK_m), myFocusMaster),
       -- ((modm, xK_f), selectWindow def >>= (`whenJust` windows . W.focusWindow)),
+      ((modm, xK_Right), nextWS),
+      ((modm, xK_Left), prevWS),
+      ((modm, xK_Up), shiftToNext >> nextWS),
+      ((modm, xK_Down), shiftToPrev >> prevWS),
+      ((modm, xK_p), toggleWS),
       ((modm, xK_o), namedScratchpadAction scratchpads "scratch"),
       ((modm, xK_f), whenX (swapHybrid True) dwmpromote),
       ((modm .|. shiftMask, xK_j), windows W.swapDown),
@@ -178,8 +184,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ++ [ ((0, xK_Print), spawn "scrotfull"),
            ((shiftMask, xK_Print), spawn "scrotsel"),
            ((controlMask, xK_Print), spawn "scrotactive"),
-           ((0, xF86XK_PowerOff), spawn "slock"),
-           ((0, xF86XK_PowerOff), spawn "systemctl suspend"),
+           ((modm, xF86XK_PowerOff), spawn "xset dpms force off"),
+           ((0, xF86XK_PowerOff), spawn "xset dpms force off && slock"),
            ((0, xF86XK_TouchpadToggle), spawn "toggle_touchpad")
          ]
 

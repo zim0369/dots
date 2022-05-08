@@ -1,0 +1,150 @@
+this
+ls
+this
+l
+ll
+la 
+ls
+pkitty l
+l
+ls
+l
+where is this
+v
+vim
+lvim
+l ~/docs/documents/
+la ~/docs/documents/
+l ~/docs/documents/
+ls ~/docs/documents/
+l ~/edge/
+ls ~/edge/
+cp ~/edge/cert-gen.pdf ~/docs/academics/internship.pdf
+rm ~/edge/cert-gen.pdf
+l
+pac -Ss haskell language server
+sudo pacman -Ss haskell language server
+fg
+history 
+fish
+fg
+ghcup install hls
+fg
+which hls
+which haskell-language-server
+hls
+ haskell-language-server
+v
+fg
+sudo pacman -Ss haskell language server
+sudo pacman -Rsu haskell language server
+sudo pacman -Rsu haskell-language-server
+which haskell-language-server
+which hls
+man ghcup
+ghcup -h
+ghcup whereis hls
+fg
+ghcup whereis hls
+which hls
+sudo ln -sfv /home/zim/.ghcup/bin/haskell-language-server-wrapper-1.6.1.0 /usr/local/bin/hls
+which hls
+v
+vim
+lvim ~/.scratch.md
+l
+fg
+ls
+l
+ls -l
+ls
+l
+ls
+ls -la
+man ls
+which ls
+fg
+man ls
+which du
+du
+dust
+fg
+fuck
+pac -Ss thefuck
+pac -Rsu thefuck
+paru -Rsu thefuck
+which thefuck
+cargo uninstall thefuck
+pip -h
+pip list 
+/thefuck
+pip list | rg fuck
+pip remove thefuck
+pip uninstall thefuck
+fg
+systemctl status kmon
+fg
+cd ~/github/reedline/
+l
+l src/
+cd src/edit_mode/
+l
+cd vi/
+l
+v ~/.config/fish/config.fish
+git -C ~/.local/share/lunarvim/lvim rev-parse HEAD
+git -C ~/.local/share/lunarvim/lvim rev-parse status
+fish
+v
+fg
+fm
+fg
+v
+cd ~/.local/share/lunarvim/lvim
+git reset --hard
+git checkout master --
+git checkout master -- or rolling
+git reset --hard
+git checkout master -- or rolling
+git checkout master -- origin/rolling
+l
+l ~/edge/
+cd edge/
+cd -
+l
+git checkout master -- or rolling
+man git
+git checkout master -- or rolling
+git checkout master
+git pull
+v
+fg
+fg
+fg
+v
+l
+git checkout rolling
+l
+cd
+v
+fg
+l ~/github/dots/
+l ~/github/dots/scripts/
+cat ~/github/dots/scripts/40-libinput.conf
+rg edge ~/github/dots/scripts/40-libinput.conf
+fg
+fm
+pkitty t
+pkitty d
+rm `~/edge/ORAL QUESTIONS (1).docx`
+zathura `edge/ORAL QUESTIONS.docx`
+du -h `edge/ORAL QUESTIONS.docx`
+du `edge/ORAL QUESTIONS.docx`
+dragon-drag-and-drop `edge/ORAL QUESTIONS.docx`
+ls
+dragon edge/beetlejuice.jpg
+v
+drop
+fg
+v
+pkitty d

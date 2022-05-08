@@ -1,3 +1,10 @@
+# Start X at login
+if status is-login
+    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+        exec startx -- -keeptty &>/dev/null
+    end
+end
+ 
 if status is-interactive
     # Commands to run in interactive sessions can go here
     function fish_user_key_bindings
@@ -16,7 +23,8 @@ fzf_configure_bindings --directory=\cd
 
 alias l="ls"
 alias x="exit"
-alias v="nvim"
+alias v="lvim"
+alias du="dust"
 alias fm="ranger"
 alias rmi="rm -i"
 alias ll="ls -lh"
@@ -25,9 +33,10 @@ alias sv="sudo nvim"
 alias pac="sudo pacman"
 alias reb="systemctl reboot"
 alias pow="systemctl poweroff"
+alias off="xset dpms force off"
 alias drop="dragon-drag-and-drop"
 alias sus="systemctl suspend && slock"
 alias cf="cd ~/.config/nvim/lua/plugins"
 alias copy="xsel -b < " 
-
-starship init fish | source 
+ 
+starship init fish | source
