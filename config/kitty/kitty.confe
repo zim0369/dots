@@ -79,6 +79,14 @@ adjust_column_width 0
 #:     map alt+2 disable_ligatures_in all never
 #:     map alt+3 disable_ligatures_in tab cursor
 
+# default scrollback pager
+scrollback_pager ~/.config/kitty/pager.sh 'INPUT_LINE_NUMBER' 'CURSOR_LINE' 'CURSOR_COLUMN'
+
+# launch action (optional `--stdin-add-formatting`)
+map alt+v launch --type overlay --stdin-source=@screen_scrollback ~/.config/kitty/pager.sh
+
+# launch action (optional `--stdin-add-formatting`)
+
 # font_features none
 
 #: Choose exactly which OpenType features to enable or disable. This
@@ -662,7 +670,7 @@ window_margin_width 10.0
 
 #: Advanced {{{
 
-# shell .
+shell /usr/bin/fish
 
 #: The shell program to execute. The default value of . means to use
 #: whatever shell is set as the default shell for the current user.
@@ -670,7 +678,7 @@ window_margin_width 10.0
 #: --login to ensure that the shell starts in interactive mode and
 #: reads its startup rc files.
 
-# editor .
+editor /home/zim/.local/bin/lvim
 
 #: The console editor to use when editing the kitty config file or
 #: similar tasks. A value of . means to use the environment variables
@@ -937,8 +945,10 @@ allow_remote_control yes
 # map kitty_mod+k         scroll_line_up
 # map kitty_mod+down      scroll_line_down
 # map kitty_mod+j         scroll_line_down
-# map kitty_mod+page_up   scroll_page_up
-# map kitty_mod+page_down scroll_page_down
+# map ctrl+k                scroll_page_up
+# map ctrl+j                scroll_page_down
+map ctrl+k                scroll_line_up
+map ctrl+j                scroll_line_down
 # map kitty_mod+home      scroll_home
 # map kitty_mod+end       scroll_end
 # map kitty_mod+h         show_scrollback
@@ -1170,7 +1180,7 @@ allow_remote_control yes
 
 # }}}
 
+confirm_os_window_close 0
 include /home/zim/.config/kitty/colors.conf
-background_image dots.png
-font_family  FuraMonoForPowerline Nerd Font
+font_family  Iosevka Nerd Font
 font_size 11

@@ -26,6 +26,7 @@ alias x="exit"
 alias v="lvim"
 alias du="dust"
 alias fm="ranger"
+alias rgi="rg -i"
 alias rmi="rm -i"
 alias ll="ls -lh"
 alias la="ls -lha"
@@ -34,9 +35,12 @@ alias pac="sudo pacman"
 alias reb="systemctl reboot"
 alias pow="systemctl poweroff"
 alias off="xset dpms force off"
-alias drop="dragon-drag-and-drop"
+alias drag="dragon-drag-and-drop"
 alias sus="systemctl suspend && slock"
 alias cf="cd ~/.config/nvim/lua/plugins"
 alias copy="xsel -b < " 
- 
+
+# source $HOME/.config/fish/skim.fish
+# skim_key_bindings
+
 starship init fish | source

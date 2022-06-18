@@ -23,7 +23,9 @@ fi
 
  # setxkbmap -option altwin:swap_lalt_lwin
  # setxkbmap -option caps:swapescape
-
+  
 feh --bg-scale --randomize ~/pictures/wallpapers/*
+ 
+picom --experimental-backend -b --config ~/.config/picom/picom.conf
 
 exec xmonad

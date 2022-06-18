@@ -109,7 +109,7 @@ while true; do
         feh --bg-scale --randomize ~/pictures/wallpapers/*
         break
     elif [[ "$action" = "p" ]]; then
-        /usr/bin/bash ~/.config/picom/picom-toggle.sh
+        /usr/bin/bash ~/.config/picom/picom-file-toggle.sh
         break
     elif [[ "$action" = "d" ]]; then
         xset dpms force off

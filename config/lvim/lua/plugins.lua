@@ -8,10 +8,13 @@ lvim.plugins = {
   { 'folke/tokyonight.nvim' },
   { 'svban/YankAssassin.vim' },
   { 'Th3Whit3Wolf/space-nvim' },
+  { 'dhruvasagar/vim-table-mode' },
   { 'davidgranstrom/nvim-markdown-preview' },
 
-  { "ellisonleao/glow.nvim",
-    branch = 'main' },
+  {
+    "catppuccin/nvim",
+    as = "catppuccin",
+  },
 
   { "ellisonleao/gruvbox.nvim",
     requires = "rktjmp/lush.nvim" },

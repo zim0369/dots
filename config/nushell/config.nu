@@ -179,7 +179,7 @@ let default_theme = {
 # The default config record. This is where much of your global configuration is setup.
 let-env config = {
   filesize_metric: false
-  table_mode: rounded # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
+  table_mode: heavy # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
   use_ls_colors: true
   rm_always_trash: false
   color_config: $default_theme
@@ -187,10 +187,10 @@ let-env config = {
   footer_mode: "25" # always, never, number_of_rows, auto
   quick_completions: true  # set this to false to prevent auto-selecting completions when only one remains
   partial_completions: true  # set this to false to prevent partial filling of the prompt
-  completion_algorithm: "prefix"  # prefix, fuzzy
+  completion_algorithm: "fuzzy"  # prefix, fuzzy
   animate_prompt: false # redraw the prompt every second
   float_precision: 2
-  buffer_editor: "emacs" # command that will be used to edit the current line buffer with ctr+e
+  buffer_editor: "lvim" # command that will be used to edit the current line buffer with ctr+e
   use_ansi_coloring: true
   filesize_format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
   edit_mode: vi # emacs, vi
@@ -201,6 +201,87 @@ let-env config = {
   menus: [
       # Configuration for default nushell menus
       # Note the lack of souce parameter
+    {
+      name: fzf_history_menu_fzf_ui
+      only_buffer_difference: false
+      marker: "# "
+      type: {
+          layout: columnar
+          columns: 4
+          col_width: 20
+          col_padding: 2
+      }
+      style: {
+          text: green
+          selected_text: green_reverse
+          description_text: yellow
+      }
+      source: { |buffer, position|
+          open -r $nu.history-path | fzf +s --tac | str trim
+          | where $it =~ $buffer
+          | each { |v| {value: ($v | str trim) } }
+      }
+    }
+
+      {
+      name: fzf_history_menu_nu_ui
+      only_buffer_difference: true
+      marker: "# "
+          type: {
+              layout: list
+              page_size: 30
+          }
+          style: {
+              text: "#000"
+              selected_text: { fg: "#66ff66" attr: r }
+              description_text: #66ff66
+          }       
+      source: { |buffer, position|
+            open -r $nu.history-path | sk -f $buffer
+            | each { |v| { value: ($v | str trim) }}
+      }
+    }
+
+    {
+      name: fzf_dir_menu_nu_ui
+      only_buffer_difference: true
+      marker: "# "
+          type: {
+              layout: list
+              page_size: 30
+          }
+          style: {
+              text: "#000"
+              selected_text: { fg: "#66ff66" attr: r }
+              description_text: #66ff66
+          }       
+      source: { |buffer, position|
+            fd -t d | sk -f $buffer
+            | each { |v| { value: ($v | str trim) }}
+      }
+    }
+
+      {
+          name: fzf_menu_nu_ui
+          only_buffer_difference: false
+          marker: "# "
+          type: {
+              layout: list
+              page_size: 10
+          }
+          style: {
+              text: "#66ff66"
+              selected_text: { fg: "#66ff66" attr: r }
+              description_text: yellow
+          }        
+          source: { |buffer, position|
+              open -r $nu.history-path
+              | fzf -f $buffer
+              | lines
+              | each { |v| {value: ($v | str trim) } }
+          }
+      }
+
       {
         name: completion_menu
         only_buffer_difference: false
@@ -318,6 +399,60 @@ let-env config = {
       }
   ]
   keybindings: [
+    # Custom Bindings
+    {
+      name: fzf_history_menu_nu_ui
+      modifier: control
+      keycode: char_r
+      mode: [emacs, vi_normal, vi_insert]
+      event: { send: menu name: fzf_history_menu_nu_ui }
+    }
+    {
+      name: fzf_dir_menu_nu_ui
+      modifier: control
+      keycode: char_d
+      mode: [emacs, vi_normal, vi_insert]
+      event: { send: menu name: fzf_dir_menu_nu_ui }
+    }
+    {
+      name: clear_line
+      modifier: control
+      keycode: char_c
+      mode: [emacs, vi_normal, vi_insert]
+      event: { edit: Clear }
+    }
+    {
+      name: complete_word
+      modifier: control
+      keycode: char_f
+      mode: [vi_insert, vi_normal]
+      event: {send: HistoryHintComplete}
+    }
+    {
+      name: complete_word
+      modifier: control
+      keycode: char_w
+      mode: [vi_insert, vi_normal]
+      event: {send: HistoryHintWordComplete}
+    }
+    {
+      name: open_editor
+      modifier: control
+      keycode: char_e
+      mode: [vi_insert, vi_normal]
+      event: {send: OpenEditor}
+    }
+    {
+      name: complete_word
+      modifier: alt
+      keycode: char_t
+      mode: [vi_insert, vi_normal]
+      event: {
+        send: ExecuteHostCommand,
+        cmd: "gela t",
+      }
+    }
+
     {
       name: completion_menu
       modifier: none
@@ -329,20 +464,6 @@ let-env config = {
           { send: menunext }
         ]
       }
-    }
-    {
-      name: clear_line
-      modifier: control
-      keycode: char_c
-      mode: [emacs, vi_normal, vi_insert]
-      event: { edit: Clear }
-    }
-    {
-      name: accept_word
-      modifier: control
-      keycode: char_w
-      mode: [emacs, vi_insert]
-      event: { edit: MoveToEnd }
     }
     {
       name: completion_previous
@@ -379,7 +500,7 @@ let-env config = {
     {
       name: commands_menu
       modifier: control
-      keycode: char_t
+      keycode: char_m
       mode: [emacs, vi_normal, vi_insert]
       event: { send: menu name: commands_menu }
     }
@@ -397,12 +518,13 @@ let-env config = {
       mode: [emacs, vi_normal, vi_insert]
       event: { send: menu name: commands_with_description }
     }
+
   ]
 }
 
-alias l = ls
-alias ll = ls -l
-alias la = ls -lha
+alias l = ls --du
+alias ll = ls -l --du
+alias la = ls -a --du
 alias x = exit
 alias v = lvim
 alias du = dust

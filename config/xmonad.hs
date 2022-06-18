@@ -36,7 +36,7 @@ import XMonad.Util.Stack
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal = "kitty"
+myTerminal = "alacritty"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -94,7 +94,7 @@ scratchpads =
       (customFloating $ W.RationalRect (2 / 7) (1 / 9) (2 / 5) (2 / 4)),
     NS
       "scratch"
-      "alacritty -t scratch -e nvim ~/.scratch.md ~/.todo.md ~/.ideas.md"
+      "alacritty -t scratch -e lvim ~/.scratch.md ~/.todo.md ~/.ideas.md ~/.reference.md"
       (title =? "scratch")
       (customFloating $ W.RationalRect (2 / 6) (1 / 9) (2 / 5) (2 / 4)),
     NS
@@ -136,7 +136,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm .|. shiftMask, xK_r), refresh),
       ((modm, xK_BackSpace), kill),
       ((modm, xK_space), sendMessage NextLayout),
-      ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf),
+      -- ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf),
+      ((modm .|. shiftMask, xK_space), withFocused toggleFloat),
       ((modm, xK_n), spawn "lvim-gui"),
       ((modm, xK_m), windows W.focusMaster),
       -- ((modm, xK_m), myFocusMaster),
@@ -181,13 +182,18 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       --   | (key, sc) <- zip [xK_w, xK_e, xK_r] [0 ..],
       --     (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
       -- ]
-      ++ [ ((0, xK_Print), spawn "scrotfull"),
-           ((shiftMask, xK_Print), spawn "scrotsel"),
+      ++ [ ((0, xK_Print), spawn "flameshot full -p ~/screenshots_full -c"),
+           ((shiftMask, xK_Print), spawn "flameshot gui -s -p ~/screenshots_cutout -c"),
            ((controlMask, xK_Print), spawn "scrotactive"),
-           ((modm, xF86XK_PowerOff), spawn "xset dpms force off"),
+           ((modm, xF86XK_PowerOff), spawn "systemctl poweroff"),
            ((0, xF86XK_PowerOff), spawn "xset dpms force off && slock"),
            ((0, xF86XK_TouchpadToggle), spawn "toggle_touchpad")
          ]
+      where
+              toggleFloat w = windows (\s -> if M.member w (W.floating s)
+                              then W.sink w s
+                              else (W.float w (W.RationalRect (1/3) (1/4) (2/5) (3/5)) s))
+          
 
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
